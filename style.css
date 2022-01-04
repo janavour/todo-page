@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+:root {
+    --form-control-color: rgb(112, 72, 255);
+    --task-done-anim-speed: 0.4s;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 10px;
+}
+
+h1 {
+    color: rgba(0, 0, 0, 0.8);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 32px;
+    margin: 32px 21px 12px;
+    line-height: 34px;
+    text-align: center;
+}
+
+#goals {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 20%;
+}
+
+p {
+    margin: 0;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.9);
+    font-size: 22px;
+    overflow: auto;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    max-height: 100px;
+    text-decoration: none;
+    text-decoration-color: var(--form-control-color);
+}
+
+p:focus {
+    outline: none;
+}
+
+p:empty::before {
+    cursor: text;
+    color: rgba(0, 0, 0, 0.44);
+    content: attr(data-placeholder);
+    margin: 0;
+}
+
+p::after {
+    position: relative;
+    display: block;
+    content: "";
+    background-color: var(--form-control-color);
+    width: 0;
+    height: 2px;
+    bottom: 14px;
+    transition: width var(--task-done-anim-speed);
+}
+
+
+
+p.strikethrough::after {
+    width: 100%;
+}
+
+#add-goal-btn {
+    display: block;
+    margin: 0 auto;
+    background-color: #FC6E51;
+    border: none;
+    width: 150px;
+    height: 50px;
+    border-radius: 2px;
+    transition: background-color 0.5s ease;
+
+    color: white;
+    font-size: 0.9rem;
+}
+
+#add-goal-btn:hover {
+    background-color: #fb512e;
+    cursor: pointer;
+}
+
+#row {
+    margin-bottom: 20px;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: var(--form-control-color);
+    width: 1.5em;
+    height: 1.5em;
+    border: 0.15em solid var(--form-control-color);
+    border-radius: 0.15em;
+    transform: translateX(-10px);
+    display: grid;
+    place-content: center;
+}
+
+
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: var(--task-done-anim-speed) transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+
+  
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+@media only screen and (max-width: 600px) {
+    #goals {
+        margin: 50px 4%;
+    }
+}
